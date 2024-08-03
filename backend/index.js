@@ -1,29 +1,55 @@
 const express = require("express");
 const { createTodoSchema } = require("./types");
+const { todo } = require("./mongodb");
 const app = express();
 const port = 3000;
 app.use(express.json());
 
 
-// put this in mongo db
-app.post("./todo", function(req, res) {
+app.post("./todo", async function(req, res) {
     const createTodo = req.body;
     const parsedTodo = createTodoSchema.safeParse(createTodo);
     if (!parsedTodo.success) {
-        return res.status(411).json(parsedTodo.error);
+        return res.status(411).json({
+            msg: "invalid data",
+        });
     }
+
+    // putting in db
+    await todo.create({
+        title: createTodo.title,
+        description: createTodo.description,
+        completed: false
+    })
+
+    res.json({
+        msg: "todo created"
+    })
 })
 
-app.get("./todos", function(req, res) {
-
+app.get("./todos", async function(req, res) {
+    const findTodos = await todo.find({});
+    res.json({
+        msg: "todos found",
+    });
 })
 
-app.put("./completed", function(req, res) {
+app.put("./completed", async function(req, res) {
     const updateTodo = req.body;
     const parsedTodo = updateTodoSchema.safeParse(updateTodo);
     if (!parsedTodo.success) {
         return res.status(411).json(parsedTodo.error);
     }
+
+    await todo.updateOne({
+        _id: updateTodo.id
+    }, {
+        completed: true
+    })
+
+    res.json({
+        msg: "todo updated"
+    })
 })
 
 app.listen(port)
