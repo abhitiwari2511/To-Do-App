@@ -1,18 +1,19 @@
 const express = require("express");
-const { createTodoSchema } = require("./types");
-const { todo } = require("./mongodb");
+const { createTodoSchema, updateTodoSchema } = require("./types");
+const todo = require("./mongodb");
 const app = express();
 const port = 3000;
 app.use(express.json());
 
 
-app.post("./todo", async function(req, res) {
+app.post("/todo", async function(req, res) {
     const createTodo = req.body;
     const parsedTodo = createTodoSchema.safeParse(createTodo);
     if (!parsedTodo.success) {
-        return res.status(411).json({
+        res.status(411).json({
             msg: "invalid data",
-        });
+        })
+        return;
     }
 
     // putting in db
@@ -27,22 +28,25 @@ app.post("./todo", async function(req, res) {
     })
 })
 
-app.get("./todos", async function(req, res) {
+app.get("/todos", async function(req, res) {
     const findTodos = await todo.find({});
     res.json({
         msg: "todos found",
     });
 })
 
-app.put("./completed", async function(req, res) {
+app.put("/completed", async function(req, res) {
     const updateTodo = req.body;
     const parsedTodo = updateTodoSchema.safeParse(updateTodo);
     if (!parsedTodo.success) {
-        return res.status(411).json(parsedTodo.error);
+        res.status(411).json({
+            msg: "invalid inputs",
+        })
+        return;
     }
 
-    await todo.updateOne({
-        _id: updateTodo.id
+    await todo.update({
+        _id: req.body.id
     }, {
         completed: true
     })
@@ -52,4 +56,4 @@ app.put("./completed", async function(req, res) {
     })
 })
 
-app.listen(port)
+app.listen(port);
