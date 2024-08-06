@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin: 10px;
+    padding: 10px;
+    font-size: large;
+}
+
+.input {
+    padding: 20px;
+    height: 2.5rem;
+}
+
+.descriptionInput {
+    height: 8rem;
+    padding: 20px;
+}
