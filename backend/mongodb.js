@@ -23,9 +23,9 @@ mongoose.connect(mongoURI, {
 // defining schema for todo
 
 const todoSchema = new mongoose.Schema({
-    title: String,
-    descripton: String,
-    completed: Boolean
+    title: "String",
+    descripton: "String",
+    completed: "Boolean"
 })
 
 const todo = mongoose.model("todos", todoSchema);
