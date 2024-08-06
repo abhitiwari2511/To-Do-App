@@ -54,14 +54,14 @@ app.put("/completed", async function(req, res) {
         _id: req.body.id
     }, {
         $set: {
-            title: req.body.title,
-            description: req.body.description,
+            // title: req.body.title,
+            // description: req.body.description,
             completed: true
         } 
     });
     
     res.json({
-        msg: "todo updated"
+        msg: "todo marked as completed"
     });
 })
 
