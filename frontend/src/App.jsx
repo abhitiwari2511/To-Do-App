@@ -6,12 +6,18 @@ import { CreateToDo } from './components/CreateToDo'
 import { Todos } from './components/Todos'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+
+  // wrong way to coonnect backend
+  fetch("http://localhost:3000/todos").then(async function(res){
+    const json = await res.json();
+    setTodos(json.findTodos);
+  })
 
   return (
     <>
       <CreateToDo></CreateToDo>
-      <Todos></Todos>
+      <Todos todos={todos}></Todos>
     </>
   )
 }

@@ -2,9 +2,11 @@ const express = require("express");
 const { createTodoSchema, updateTodoSchema } = require("./types");
 const todo = require("./mongodb");
 const app = express();
+const cors = require("cors");
 const port = 3000;
 app.use(express.json());
 
+app.use(cors());
 
 app.post("/todo", async function(req, res) {
     const createTodo = req.body;
