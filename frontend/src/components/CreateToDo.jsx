@@ -22,7 +22,8 @@ export function CreateToDo() {
                     setDescription(value);
                 }} className="descriptionInput" type="text" id="description" name="description" />
                 <br/>
-                <button onClick={() => {
+                <button onClick={(e) => {
+                    e.preventDefault();
                     fetch("http://localhost:3000/todo", {
                         method: "POST",
                         body: JSON.stringify({
