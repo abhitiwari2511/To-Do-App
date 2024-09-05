@@ -10,21 +10,23 @@ app.use(cors());
 
 app.post("/todo", async function(req, res) {
     const createTodo = req.body;
-    console.log(createTodo);
-    const parsedTodo = createTodoSchema.safeParse(createTodo);
-    if (!parsedTodo.success) {
-        res.status(411).json({
-            msg: "invalid data",
-        })
-        return;
-    }
+    console.log(createTodo.title);
+    console.log(createTodo.description);
+    // const parsedTodo = createTodoSchema.safeParse(createTodo);
+    // if (!parsedTodo.success) {
+    //     res.status(411).json({
+    //         msg: "invalid data",
+    //     })
+    //     return;
+    // }
 
     // putting in db
-    await todo.create({
+    const response = await todo.create({
         title: createTodo.title,
         description: createTodo.description,
         completed: false
     }) 
+    console.log("response==>",response)
     res.json({
         msg: "todo created"
     })
