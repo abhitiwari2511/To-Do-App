@@ -24,7 +24,7 @@ mongoose.connect(mongoURI, {
 
 const todoSchema = new mongoose.Schema({
     title: "String",
-    descripton: "String",
+    description: "String",
     completed: "Boolean"
 })
 
