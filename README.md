@@ -2,6 +2,6 @@
 This project contains a TODO application.
 It has the following features -
 
-- Anyone can create a ToDo
-- Anyone can their created ToDo's
-- Anyone can mark a ToDo as done
+- Anyone can create a Todo
+- Anyone can update their created Todo's and mark as completed
+- Anyone can delete a todo
