@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const res = await fetch("http://localhost:3000/todos");
+        const res = await fetch("https://vercel.com/abhishek-tiwaris-projects-880cd6ab/to-do-app/9iwJBYto68VUSdMErPu8TdJdsidD/todos");
         const json = await res.json();
         setTodos(json.findTodos);
       } catch (error) {
