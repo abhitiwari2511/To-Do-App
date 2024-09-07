@@ -24,7 +24,7 @@ export function Todos({todos, setTodos}) {
     // to delete a todo
   const deleteTodo = async (_id) => {
     try {
-      await axios.delete(`https://vercel.com/abhishek-tiwaris-projects-880cd6ab/to-do-app/9iwJBYto68VUSdMErPu8TdJdsidD/delete/${_id}`,{
+      await axios.delete(`http://localhost:3000/delete/${_id}`,{
         id: _id,
       });
   

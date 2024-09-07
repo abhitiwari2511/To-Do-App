@@ -24,7 +24,7 @@ export function CreateToDo() {
                 <br/>
                 <button onClick={(e) => {
                     e.preventDefault();
-                    fetch("https://vercel.com/abhishek-tiwaris-projects-880cd6ab/to-do-app/9iwJBYto68VUSdMErPu8TdJdsidD/todo", {
+                    fetch("http://localhost:3000/todo", {
                         method: "POST",
                         body: JSON.stringify({
                             title: title,
